@@ -9,10 +9,11 @@ with [Draggable](https://www.npmjs.com/package/draggable), [Vuejs](https://vuejs
 # Instalation
 After clone, will be necessary to install vendors (Laravel and Vue) and set the `app_key`:
 ````bash
-composer install
-npm install
+composer install # Install Laravel dependencies
+npm install # Install JS, Mix and Vue dependencies
 # yarn install # For yarn users
-php artisan key:generate
+cp .env.example .env # copy the .env file
+php artisan key:generate # Generate the key to the application 'app_key' on .env file
 # Maybe it's necessary to relink the storage folder: 
 php artisan storage:link
 ````
