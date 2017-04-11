@@ -2,7 +2,7 @@
 
 return [
 
-    'nFrames' => 1, // Número de frames utilizados
+    'nFrames' => 2, // Número de frames utilizados
     'nFolders' => 1, // Número de pastas/cenas utilizadas
     /*
     |--------------------------------------------------------------------------

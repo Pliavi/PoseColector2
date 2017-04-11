@@ -39,7 +39,7 @@ class FrameController extends Controller {
             }elseif($action == 'next'){
                 return redirect()->route('frame', ++$id);
             }elseif($action == 'finish'){
-                return 'x';
+                $request->session()->put('cantAgain', true);
                 return redirect()->route('finish');
             }
         }
