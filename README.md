@@ -26,14 +26,13 @@ Set the number of images and folders on file `app/config/app.php`:
 'nFolders' => x, // change the 'x' to the number you need, default is 10
 ````
 
-Put the image files (.jpg) inside it's folder inside `app/storage/public` following the pattern:
-- images
-  - collection1
-    - frame1.jpg
-    - frame[...].jpg
-    - frame30.jpg
-  - collection[...]
-  - collection[10]
+Put the image files (.jpg) inside it's folder inside `app/storage/public/images` following the pattern:
+- collection1
+  - frame1.jpg
+  - frame[...].jpg
+  - frame30.jpg
+- collection[...]
+- collection[10]
 
 Type `php artisan serve` to start the application and go to `localhost:8000` to use.
 
