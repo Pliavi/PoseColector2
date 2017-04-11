@@ -44,12 +44,16 @@
     <input type="hidden" :value="positions.knee_right.y"     name="positions[knee_right][1]"     hidden required>
     <input type="hidden" :value="positions.foot_left.y"      name="positions[foot_left][1]"      hidden required>
     <input type="hidden" :value="positions.foot_right.y"     name="positions[foot_right][1]"     hidden required>
+
+    <input type="hidden" :value="action"     name="action"     hidden required>
     <div class="text-center">
       @if($hideButton != 'previous')
-        <button class="siimple-btn siimple-btn--teal go-button" value="previous" type="submit">Anterior!</button>    
+        <button class="siimple-btn siimple-btn--teal go-button" @click="setAction('previous')" type="submit">Anterior!</button>    
       @endif      
       @if($hideButton != 'next')
-        <button class="siimple-btn siimple-btn--teal go-button" value="next" type="submit">Próximo!</button>
+        <button class="siimple-btn siimple-btn--teal go-button" @click="setAction('next')" type="submit">Próximo!</button>
+      @else
+        <button class="siimple-btn siimple-btn--teal go-button" @click="setAction('finish')" type="submit">Terminar!</button>
       @endif
     </div>
   </form>

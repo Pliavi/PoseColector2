@@ -5,6 +5,7 @@ import BodyPart from './components/body-part'
 var app = new Vue({
     el: '#app',
     data: {
+        "action": null,
         "positions":{
             "head" : {x: null, y: null},
             "neck" : {x: null, y: null},
@@ -24,6 +25,9 @@ var app = new Vue({
         }
     },
     methods:{
+        setAction($value){
+            this.$data.action = $value;
+        },
         onSubmit(el){
             let arr = Object.keys(this.$data.positions).map(function (key) { console.log(this.$data.positions);return this.$data.positions[key]; }, this);
 

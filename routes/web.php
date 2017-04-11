@@ -16,3 +16,4 @@ Route::name('login')->post('/login', 'LoginController@login');
 
 Route::name('frame')->get('/{id}', 'FrameController@getFrame');
 Route::name('save')->post('save', 'FrameController@saveFrame');
+Route::name('finish')->post('finish', 'FrameController@finish');

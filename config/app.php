@@ -2,8 +2,8 @@
 
 return [
 
-    'nFrames' => 30, // Número de frames utilizados
-    'nFolders' => 10, // Número de pastas/cenas utilizadas
+    'nFrames' => 1, // Número de frames utilizados
+    'nFolders' => 1, // Número de pastas/cenas utilizadas
     /*
     |--------------------------------------------------------------------------
     | Application Name

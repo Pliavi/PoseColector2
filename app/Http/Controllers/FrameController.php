@@ -12,6 +12,7 @@ class FrameController extends Controller {
         $stayOnFrame = false;
         $id = $request->input('id');
         $positions = $request->input('positions');
+        $action = $request->input('action');
 
         foreach ($positions as $value) {
             if($value[0] == 800){
@@ -33,8 +34,19 @@ class FrameController extends Controller {
         if($stayOnFrame){
             return redirect()->route('frame', $id);
         }else{
-            return redirect()->route('frame', ++$id);
+            if($action == 'previous'){
+                return redirect()->route('frame', --$id);
+            }elseif($action == 'next'){
+                return redirect()->route('frame', ++$id);
+            }elseif($action == 'finish'){
+                return 'x';
+                return redirect()->route('finish');
+            }
         }
+    }
+
+    public function finish(){
+        return view('finish');
     }
 
     public function getFrame(Request $request, $id){
@@ -45,10 +57,11 @@ class FrameController extends Controller {
             $id = 1;
             $hideButton = 'previous';
             $request->session()->flash('info', 'Primeiro frame!');
-        } elseif ($id >= config('app.nFrames')) {
+        } 
+        if ($id >= config('app.nFrames')) {
             $id = config('app.nFrames');
             $hideButton = 'next';
-            $request->session()->flash('info', 'Último frame! Clique em próximo para terminar!');
+            $request->session()->flash('info', 'Último frame! Complete-o para terminar!');
         }
 
         $pathToFile = "collection$folder/frame$id";
@@ -64,7 +77,8 @@ class FrameController extends Controller {
 
         $pathToFile = "collection$folder/frame$id";        
         if(Storage::exists("public/json/$pathToFile.json")){
-            $positions = (json_decode(Storage::get("public/json/$pathToFile.json")))->positions;
+            $positions = json_decode(Storage::get("public/json/$pathToFile.json"));
+            $positions = $positions->positions;
             return view('player', compact('id', 'hideButton', 'image', 'positions'));
         }else{
             return view('player', compact('id', 'hideButton', 'image'));
