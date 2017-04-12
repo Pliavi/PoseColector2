@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('title', 'Identificação')
 @section('content')
   <form method="POST" action="{{ route('login') }}" class="siimple-h6" style="text-align: center">
     {{ csrf_field() }}

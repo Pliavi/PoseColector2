@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('title', "Frame $id")
 @section('notapp')
 <script>
   // Global vars

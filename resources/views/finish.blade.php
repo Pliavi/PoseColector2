@@ -1,4 +1,5 @@
 @extends('layout.main')
+@section('title', 'Finalizado!')
 @section('content')
 <div class="medium-screen"> 
     <h1 class="siimple-h1 text-center">Finalizado! <br> Muito obrigado {{Session::get('volunteer')}}!</h1>
