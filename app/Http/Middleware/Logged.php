@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CantDoItAgain
+class Logged
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,10 @@ class CantDoItAgain
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('cantAgain')){
-            $request->session()->flash('error', 'Você não poderá refazer nos próximos minutos');
-            return redirect()->route('finish');
-        } else {
-            return $next($request);
+        if(!$request->session()->has('folder') || !$request->session()->has('volunteer')){
+            $request->session()->flash('error', 'É necessário se identificar antes de inicar!');
+            return redirect()->route('index');
         }
+        return $next($request);
     }
 }
