@@ -9,7 +9,7 @@
 </script>
 @endsection
 @section('content')
-  <form method="POST" action="{{ route('save') }}" v-on:submit.prevent="onSubmit">
+  <form method="POST" action="{{ route('save') }}" v-on:submit.prevent="onSubmit" ref="form">
     {{ csrf_field() }}
     <!-- X Axis positions -->
     <input type="hidden"  value="{{$id}}"                  name="id"                        hidden required>

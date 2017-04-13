@@ -109,6 +109,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.$data.action = $value;
         },
         onSubmit: function onSubmit(el) {
+            var _this = this;
+
             var arr = Object.keys(this.$data.positions).map(function (key) {
                 console.log(this.$data.positions);return this.$data.positions[key];
             }, this);
@@ -121,31 +123,34 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
             }
 
-            el.target.submit();
+            setTimeout(function () {
+                _this.$refs.form.submit();
+            }, 150);
         }
     },
-    components: { BodyPart: __WEBPACK_IMPORTED_MODULE_2__components_body_part___default.a }
-});
+    components: { BodyPart: __WEBPACK_IMPORTED_MODULE_2__components_body_part___default.a },
+    mounted: function mounted() {
+        // DRAGABLE
+        var optionsFactory = {
+            limit: dragbound,
+            onDragStart: function onDragStart(el) {
+                el.style.cursor = 'none';
+            },
+            onDragEnd: function onDragEnd(el) {
+                el.style.cursor = 'initial';
+                var coord = draggables[el.id].get();
+                app.$data.positions[el.id].x = coord.x;
+                app.$data.positions[el.id].y = coord.y;
+            }
+        };
 
-// DRAGABLE
-var optionsFactory = {
-    limit: dragbound,
-    onDragStart: function onDragStart(el) {
-        el.style.cursor = 'none';
-    },
-    onDragEnd: function onDragEnd(el) {
-        el.style.cursor = 'initial';
-        var coord = draggables[el.id].get();
-        app.$data.positions[el.id].x = coord.x;
-        app.$data.positions[el.id].y = coord.y;
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            var options = optionsFactory;
+            draggables[element.id] = new __WEBPACK_IMPORTED_MODULE_1_draggable___default.a(element, options);
+        }
     }
-};
-
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-    var options = optionsFactory;
-    draggables[element.id] = new __WEBPACK_IMPORTED_MODULE_1_draggable___default.a(element, options);
-}
+});
 
 /***/ }),
 /* 1 */
@@ -373,7 +378,7 @@ var Component = __webpack_require__(6)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\PositionColector2\\resources\\assets\\js\\components\\body-part.vue"
+Component.options.__file = "D:\\Programas\\xampp\\htdocs\\PositionColector2\\resources\\assets\\js\\components\\body-part.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] body-part.vue: functional components are not supported with templates, they should use render functions.")}
 
